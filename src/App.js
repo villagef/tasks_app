@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import useStickyData from './useStickyData'
 
 
@@ -7,7 +7,7 @@ import useStickyData from './useStickyData'
 function App() {
   const [inputValue, setInpuValue] = useState("");
   const [todoTasks, setTodoTasks] = useStickyData([]);
-  const [doneTasks, setDoneTasks] = useState([]);
+  const [doneTasks, setDoneTasks] = useStickyData([]);
   const [isDone, setIsDone] = useState(false);
   let randomId = Math.random() * 1000;
 
@@ -29,10 +29,25 @@ function App() {
     setIsDone(todoTasks.map(todo => {
       if(todo.id == e.target.id) {
         todo.isDone = !todo.isDone;
+        if(todo.isDone){
+          setDoneTasks([
+            ...doneTasks, todo
+          ]);
+        }
       }
-      return todo;
     }))
   };
+
+
+  const handleDelete = () => {
+    todoTasks.map(todo => {
+      if(todo.isDone){
+        setTodoTasks(todoTasks.filter(el => el.id != todo.id));
+      } 
+    })
+  }
+
+  handleDelete();
 
   console.log(todoTasks);
 
@@ -47,7 +62,7 @@ function App() {
               <li key={task.id}>
                 <label>
                   <input type="checkbox" onChange={handleCheck} id={task.id} />
-                  {task.text.toUpperCase()}
+                  {task.text}
                 </label>
               </li>
             ))}
@@ -55,6 +70,16 @@ function App() {
         </div>
         <div className="col-right">
           <h3>Zrobione ({doneTasks.length})</h3>
+          <ul>
+            {doneTasks.map((task) => (
+              <li key={task.id} id={task.id}>
+                <label>
+                  <input type="checkbox" defaultChecked={true} />
+                  {task.text}
+                </label>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="inputWrapper">
