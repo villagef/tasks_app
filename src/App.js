@@ -25,8 +25,13 @@ function App() {
     setInpuValue("");
   };
 
-  const handleCheck = (e) => {
-    console.log(e.target.id);
+  const handleCheck = e => {
+    setIsDone(todoTasks.map(todo => {
+      if(todo.id == e.target.id) {
+        todo.isDone = !todo.isDone;
+      }
+      return todo;
+    }))
   };
 
   console.log(todoTasks);
