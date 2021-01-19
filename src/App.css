@@ -6,5 +6,71 @@
 
 body {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 60%;
+  min-height: 50%;
+  border: 1px solid grey;
+  border-radius: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+
+}
+
+.app h1 {
+  padding: 10px;
+}
+
+.listsWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+  min-height: 100px;
+}
+
+.col-right, .col-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.inputWrapper {
+  width: 100%;
+  padding: 10px;
+}
+
+.input, .button {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.button {
+  background-color: rgb(37, 108, 201);
+  color: white;
+  font-size: 1.2rem;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+li, input {
+  margin: 5px 10px;
+  font-size: 1.2rem;
 }
