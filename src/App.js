@@ -52,6 +52,7 @@ function App() {
   console.log(todoTasks);
 
   return (
+    <>
     <div className="app">
       <h1>Lista zadań</h1>
       <div className="listsWrapper">
@@ -96,6 +97,11 @@ function App() {
         </form>
       </div>
     </div>
+    <footer>
+        <p>© 2021 Filip Wydra</p>
+        <p><a href="https://github.com/villagef/tasks_app"><i className="fab fa-github"></i>Github source code</a></p>
+    </footer>
+    </>
   );
 }
 
