@@ -62,7 +62,7 @@ function App() {
           <h3>Do zrobienia ({todoTasks.length})</h3>
           <ul>
             {todoTasks.map((task) => (
-              <Task task={task} handleCheck={handleCheck} isDone={isDone}/>
+              <Task task={task} handleCheck={handleCheck} isDone={task.isDone}/>
             ))}
           </ul>
         </div>
@@ -70,7 +70,7 @@ function App() {
           <h3>Zrobione ({doneTasks.length})</h3>
           <ul>
             {doneTasks.map((task) => (
-              <Task task={task} handleCheck={handleCheck} isDone={isDone}/>
+              <Task task={task} handleCheck={handleCheck} isDone={task.isDone}/>
             ))}
           </ul>
         </div>
