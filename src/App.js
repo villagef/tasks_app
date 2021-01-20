@@ -1,6 +1,8 @@
 import "./App.css";
 import { useState} from "react";
-import useStickyData from './useStickyData'
+import useStickyData from './useStickyData';
+
+import Task from './components/Task';
 
 
 
@@ -60,12 +62,7 @@ function App() {
           <h3>Do zrobienia ({todoTasks.length})</h3>
           <ul>
             {todoTasks.map((task) => (
-              <li key={task.id}>
-                <label>
-                  <input type="checkbox" onChange={handleCheck} id={task.id} />
-                  {task.text}
-                </label>
-              </li>
+              <Task task={task} handleCheck={handleCheck} isDone={isDone}/>
             ))}
           </ul>
         </div>
@@ -73,12 +70,7 @@ function App() {
           <h3>Zrobione ({doneTasks.length})</h3>
           <ul>
             {doneTasks.map((task) => (
-              <li key={task.id} id={task.id}>
-                <label>
-                  <input type="checkbox" defaultChecked={true} />
-                  {task.text}
-                </label>
-              </li>
+              <Task task={task} handleCheck={handleCheck} isDone={isDone}/>
             ))}
           </ul>
         </div>
