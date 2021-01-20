@@ -1,23 +1,30 @@
 import "./App.css";
-import { useState} from "react";
-import useStickyData from './useStickyData';
-
+import { useState, useEffect} from "react";
 import Task from './components/Task';
-
 
 
 function App() {
   const [inputValue, setInpuValue] = useState("");
-  const [todoTasks, setTodoTasks] = useStickyData([]);
-  const [doneTasks, setDoneTasks] = useStickyData([]);
+  const [todoTasks, setTodoTasks] = useState(() => { 
+    const localData = localStorage.getItem('todoTasks');
+    return localData ? JSON.parse(localData) : [];
+  });
+  const [doneTasks, setDoneTasks] = useState(() => { 
+    const localData = localStorage.getItem('doneTasks');
+    return localData ? JSON.parse(localData) : [];
+  });
   const [isDone, setIsDone] = useState(false);
   let randomId = Math.random() * 1000;
 
+  //handle input text
+  //assign text to variable
   const handleInput = (e) => {
     setInpuValue(e.target.value);
     console.log(e.target.value);
   };
 
+  //handle submit button
+  //on submit setup task to false and move to todoTasks array
   const handleSubmit = (e) => {
     e.preventDefault();
     setTodoTasks([
@@ -27,6 +34,8 @@ function App() {
     setInpuValue("");
   };
 
+  //handle checkbox
+  //when checked change to true and move to doneTasks array
   const handleCheck = e => {
     setIsDone(todoTasks.map(todo => {
       if(todo.id == e.target.id) {
@@ -40,7 +49,8 @@ function App() {
     }))
   };
 
-
+  //handle taks from todoTasks array
+  //when isDone == true remove task from array
   const handleDelete = () => {
     todoTasks.map(todo => {
       if(todo.isDone){
@@ -48,10 +58,17 @@ function App() {
       } 
     })
   }
-
   handleDelete();
 
-  console.log(todoTasks);
+  //set todoTasks into local storage
+  useEffect(() => {
+    localStorage.setItem('todoTasks', JSON.stringify(todoTasks))
+  }, [todoTasks]);
+
+   //set doneTasks into local storage
+  useEffect(() => {
+    localStorage.setItem('doneTasks', JSON.stringify(doneTasks))
+  }, [doneTasks]);
 
   return (
     <>
