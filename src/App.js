@@ -73,10 +73,10 @@ function App() {
   return (
     <>
     <div className="app">
-      <h1>Lista zadań</h1>
+      <h1>Tasks list</h1>
       <div className="listsWrapper">
         <div className="col-left">
-          <h3>Do zrobienia ({todoTasks.length})</h3>
+          <h3>Todo tasks ({todoTasks.length})</h3>
           <ul>
             {todoTasks.map((task) => (
               <Task task={task} handleCheck={handleCheck} isDone={task.isDone}/>
@@ -84,7 +84,7 @@ function App() {
           </ul>
         </div>
         <div className="col-right">
-          <h3>Zrobione ({doneTasks.length})</h3>
+          <h3>Done tasks ({doneTasks.length})</h3>
           <ul>
             {doneTasks.map((task) => (
               <Task task={task} handleCheck={handleCheck} isDone={task.isDone}/>
@@ -101,7 +101,7 @@ function App() {
             className="input"
           />
           <button onClick={handleSubmit} type="submit" className="button">
-            Dodaj zadanie
+            Add Task
           </button>
         </form>
       </div>
